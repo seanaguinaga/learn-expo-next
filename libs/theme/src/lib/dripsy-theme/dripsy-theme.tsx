@@ -5,11 +5,24 @@ import { Platform } from "react-native";
 const spaceSize = 4;
 const fontSize = 12;
 
+const lightColors = { $text: "#000", $background: "#fff", $primary: "tomato" };
+
 const theme = makeTheme({
-  colors: {
-    $text: "#000",
-    $background: "#fff",
-    $primary: "tomato",
+  types: {
+    onlyAllowThemeValues: "always",
+  },
+  colors: lightColors,
+  shadows: {
+    md: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+    },
   },
   fonts: {
     $body:
@@ -45,6 +58,13 @@ const theme = makeTheme({
       mb: "$3",
     },
   },
+  textShadows: {
+    onImage: {
+      textShadowOffset: { width: 1, height: 1 },
+      textShadowRadius: 5,
+      textShadowColor: "#00000099",
+    },
+  },
   breakpoints: Platform.select({
     native: ["391px", "845px"],
     web: ["600px", "1200px"],
@@ -58,4 +78,15 @@ declare module "dripsy" {
   interface DripsyCustomTheme extends MyTheme {}
 }
 
-export { theme };
+const darkColors: typeof lightColors = {
+  $text: "#000",
+  $background: "#fff",
+  $primary: "blue",
+};
+
+const themeDark = {
+  ...theme,
+  colors: darkColors,
+};
+
+export { theme, themeDark };
