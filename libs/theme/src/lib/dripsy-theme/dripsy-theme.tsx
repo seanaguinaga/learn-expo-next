@@ -1,21 +1,21 @@
 // https://www.dripsy.xyz/usage/theming/create
-import { makeTheme } from 'dripsy';
-import { Platform } from 'react-native';
+import { makeTheme } from "dripsy";
+import { Platform } from "react-native";
 
 const spaceSize = 4;
 const fontSize = 12;
 
 const theme = makeTheme({
   colors: {
-    $text: '#000',
-    $background: '#fff',
-    $primary: 'tomato',
+    $text: "#000",
+    $background: "#fff",
+    $primary: "tomato",
   },
   fonts: {
     $body:
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    $heading: 'Georgia, serif',
-    $monospace: 'Menlo, monospace',
+    $heading: "Georgia, serif",
+    $monospace: "Menlo, monospace",
   },
   space: {
     $0: 0,
@@ -38,24 +38,24 @@ const theme = makeTheme({
   },
   text: {
     h1: {
-      fontSize: '$2',
+      fontSize: "$2",
     },
     p: {
-      fontSize: '$0',
-      mb: '$3',
+      fontSize: "$0",
+      mb: "$3",
     },
   },
   breakpoints: Platform.select({
-    native: ['391px', '845px'],
-    web: ['600px', '1200px'],
+    native: ["391px", "845px"],
+    web: ["600px", "1200px"],
   }),
 });
 
 type MyTheme = typeof theme;
 
-declare module 'dripsy' {
-  //@ts-expect-error is fine
-  type DripsyCustomTheme = MyTheme;
+declare module "dripsy" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DripsyCustomTheme extends MyTheme {}
 }
 
 export { theme };
